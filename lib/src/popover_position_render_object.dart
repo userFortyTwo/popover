@@ -50,8 +50,7 @@ final class PopoverPositionRenderObject extends RenderShiftedBox {
       direction,
     );
 
-    if (_direction == PopoverDirection.top ||
-        _direction == PopoverDirection.bottom) {
+    if (_direction == PopoverDirection.top || _direction == PopoverDirection.bottom) {
       return _dxOffset(_direction, _horizontalOffset(size), size);
     } else {
       return _dyOffset(_direction, _verticalOffset(size), size);
@@ -95,30 +94,47 @@ final class PopoverPositionRenderObject extends RenderShiftedBox {
 
   double _horizontalOffset(Size size) {
     var offset = 0.0;
+    const horizontalMargin = 8.0; // Proper horizontal margin instead of arrowHeight
 
-    if (attachRect.left > size.width / 2 &&
-        PopoverUtils.physicalSize.width - attachRect.right > size.width / 2) {
-      offset = attachRect.left + attachRect.width / 2 - size.width / 2;
-    } else if (attachRect.left < size.width / 2) {
-      offset = arrowHeight;
+    // Always try to center the popover first
+    final centeredOffset = attachRect.left + attachRect.width / 2 - size.width / 2;
+
+    // Check if centered popover would fit on screen with margins
+    if (centeredOffset >= horizontalMargin &&
+      centeredOffset + size.width <= PopoverUtils.physicalSize.width - horizontalMargin) {
+    // Perfect centering case
+    offset = centeredOffset;
+    } else if (centeredOffset < horizontalMargin) {
+    // Popover would go off left edge, align to left margin
+    offset = horizontalMargin;
     } else {
-      offset = PopoverUtils.physicalSize.width - arrowHeight - size.width;
+    // Popover would go off right edge, align to right margin
+    offset = PopoverUtils.physicalSize.width - horizontalMargin - size.width;
     }
+
     return offset;
   }
 
   double _verticalOffset(Size size) {
     var offset = 0.0;
+    const verticalMargin = 8.0; // Proper vertical margin
 
-    if (attachRect.top > size.height / 2 &&
-        PopoverUtils.physicalSize.height - attachRect.bottom >
-            size.height / 2) {
-      offset = attachRect.top + attachRect.height / 2 - size.height / 2;
-    } else if (attachRect.top < size.height / 2) {
-      offset = arrowHeight;
+    // Always try to center the popover first
+    final centeredOffset = attachRect.top + attachRect.height / 2 - size.height / 2;
+
+    // Check if centered popover would fit on screen with margins
+    if (centeredOffset >= verticalMargin &&
+      centeredOffset + size.height <= PopoverUtils.physicalSize.height - verticalMargin) {
+    // Perfect centering case
+    offset = centeredOffset;
+    } else if (centeredOffset < verticalMargin) {
+    // Popover would go off top edge, align to top margin
+    offset = verticalMargin;
     } else {
-      offset = PopoverUtils.physicalSize.height - arrowHeight - size.height;
+    // Popover would go off bottom edge, align to bottom margin
+    offset = PopoverUtils.physicalSize.height - verticalMargin - size.height;
     }
+
     return offset;
   }
 }
