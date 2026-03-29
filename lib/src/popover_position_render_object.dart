@@ -94,22 +94,19 @@ final class PopoverPositionRenderObject extends RenderShiftedBox {
 
   double _horizontalOffset(Size size) {
     var offset = 0.0;
-    const horizontalMargin = 8.0; // Proper horizontal margin instead of arrowHeight
+    const horizontalMargin = 8.0;
 
-    // Always try to center the popover first
-    final centeredOffset = attachRect.left + attachRect.width / 2 - size.width / 2;
+    final centeredOffset =
+        attachRect.left + attachRect.width / 2 - size.width / 2;
 
-    // Check if centered popover would fit on screen with margins
     if (centeredOffset >= horizontalMargin &&
-      centeredOffset + size.width <= PopoverUtils.physicalSize.width - horizontalMargin) {
-    // Perfect centering case
-    offset = centeredOffset;
+        centeredOffset + size.width <=
+            PopoverUtils.physicalSize.width - horizontalMargin) {
+      offset = centeredOffset;
     } else if (centeredOffset < horizontalMargin) {
-    // Popover would go off left edge, align to left margin
-    offset = horizontalMargin;
+      offset = horizontalMargin;
     } else {
-    // Popover would go off right edge, align to right margin
-    offset = PopoverUtils.physicalSize.width - horizontalMargin - size.width;
+      offset = PopoverUtils.physicalSize.width - horizontalMargin - size.width;
     }
 
     return offset;
@@ -117,22 +114,19 @@ final class PopoverPositionRenderObject extends RenderShiftedBox {
 
   double _verticalOffset(Size size) {
     var offset = 0.0;
-    const verticalMargin = 8.0; // Proper vertical margin
+    const verticalMargin = 8.0;
 
-    // Always try to center the popover first
-    final centeredOffset = attachRect.top + attachRect.height / 2 - size.height / 2;
+    final centeredOffset =
+        attachRect.top + attachRect.height / 2 - size.height / 2;
 
-    // Check if centered popover would fit on screen with margins
     if (centeredOffset >= verticalMargin &&
-      centeredOffset + size.height <= PopoverUtils.physicalSize.height - verticalMargin) {
-    // Perfect centering case
-    offset = centeredOffset;
+        centeredOffset + size.height <=
+            PopoverUtils.physicalSize.height - verticalMargin) {
+      offset = centeredOffset;
     } else if (centeredOffset < verticalMargin) {
-    // Popover would go off top edge, align to top margin
-    offset = verticalMargin;
+      offset = verticalMargin;
     } else {
-    // Popover would go off bottom edge, align to bottom margin
-    offset = PopoverUtils.physicalSize.height - verticalMargin - size.height;
+      offset = PopoverUtils.physicalSize.height - verticalMargin - size.height;
     }
 
     return offset;
