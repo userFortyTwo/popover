@@ -197,10 +197,10 @@ cd example && flutter run
 This project accepts **pull requests only.**
 
 If you've encountered a bug or have an improvement in mind, please open a PR with a
-minimal fix or a reproduction in the example app. See CONTRIBUTING.md
+minimal fix or a reproduction in the example app. See [CONTRIBUTING.md](https://github.com/minikin/popover/blob/main/CONTRIBUTING.md)
 for the full contribution process.
 
 ## License
 
-The source code of Popover project is available under the MIT license.
+The source code of the Popover project is available under the MIT license.
 See the [LICENSE](https://github.com/minikin/popover/blob/main/LICENSE) file for more info.
