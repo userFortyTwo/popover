@@ -50,7 +50,8 @@ final class PopoverPositionRenderObject extends RenderShiftedBox {
       direction,
     );
 
-    if (_direction == PopoverDirection.top || _direction == PopoverDirection.bottom) {
+    if (_direction == PopoverDirection.top ||
+        _direction == PopoverDirection.bottom) {
       return _dxOffset(_direction, _horizontalOffset(size), size);
     } else {
       return _dyOffset(_direction, _verticalOffset(size), size);
